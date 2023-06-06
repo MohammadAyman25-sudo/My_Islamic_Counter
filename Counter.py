@@ -26,14 +26,14 @@ class Counter(QWidget):
 
     def increment(self):
         x = int(self.lbl.text())
-        if x == 33 and self.inc_button.text() == "سبحان الله":
+        if x == 33:
             x = -1
-            self.inc_button.setText("الحمد لله")
-        elif x == 33 and self.inc_button.text() == "الحمد لله":
-            x = -1
-            self.inc_button.setText("الله اكبر")
-        elif x == 33 and self.inc_button.text() == "الله اكبر":
-            x = -1
-            self.inc_button.setText("سبحان الله")
-            self.inc_button.setEnabled(False)
+            match self.inc_button.text():
+                case "سبحان الله":
+                    self.inc_button.setText("الحمد لله")
+                case "الحمد لله":
+                    self.inc_button.setText("الله أكبر")
+                case _:
+                    self.inc_button.setText("سبحان الله")
+                    self.inc_button.setEnabled(False)
         self.lbl.setText(str(x + 1))
